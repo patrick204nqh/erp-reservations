@@ -1,0 +1,94 @@
+<table class="table table-advance table-hover table-striped order-column">
+    <thead>
+        <tr>
+            <th width='1%'>
+                <%= erp_datalist_check_all %>
+            </th>
+            <% if get_columns(params).include?("name") %>
+                <th><%= t('.name') %></th>
+            <% end %>
+            <% if get_columns(params).include?("phone") %>
+                <th><%= t('.phone') %></th>
+            <% end %>
+            <% if get_columns(params).include?("email") %>
+                <th><%= t('.email') %></th>
+            <% end %>
+            <% if get_columns(params).include?("resdate") %>
+                <th width='15%'><%= t('.resdate') %></th>
+            <% end %>
+            <% if get_columns(params).include?("restime") %>
+                <th class="sortable" sort-by='erp_reservations_reservations.restime'>
+                    <%= t('.restime') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("numperson") %>
+                <th>
+                    <%= t('.numperson') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("note") %>
+                <th>
+                    <%= t('.note') %>
+                </th>
+            <% end %>
+            <th width="7%"><%= t('actions') %></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @reservations.each do |reservation| %>
+            <tr class="odd gradeX has-child-table" data-url="<%= erp_quick_orders.order_details_backend_orders_path(id: reservation.id) %>">
+                <td>
+                    <%= erp_datalist_check_row(id: reservation.id) %>
+                </td>
+                <% if get_columns(params).include?("code") %>
+                    <td>
+                        <i class="fa fa-plus expand tr-expand-button"></i>
+                        <span class="font-yellow-gold sbold"><%= reservation.code %></span>
+                    </td>
+                <% end %>
+                <% if get_columns(params).include?("name") %>
+                    <td><%= reservation.name %></td>
+                <% end %>
+                <% if get_columns(params).include?("phone") %>
+                    <td><%= reservation.phone %></td>
+                <% end %>
+                <% if get_columns(params).include?("email") %>
+                    <td><%= reservation.email %></td>
+                <% end %>
+                <% if get_columns(params).include?("resdate") %>
+                    <td><%= reservation.resdate %></td>
+                <% end %>
+                <% if get_columns(params).include?("restime") %>
+                    <td><%= reservation.restime %></td>
+                <% end %>
+                <% if get_columns(params).include?("numperson") %>
+                    <td><%= reservation.numperson %></td>
+                <% end %>
+                <% if get_columns(params).include?("note") %>
+                    <td><%= reservation.note %></td>
+                <% end %>
+                <td>
+                    <%
+                        actions = []
+                        actions << {
+                            text: '<i class="fa fa-trash"></i> '+t('.delete'),
+                            url: erp_reservations.backend_reservation_path(reservation),
+                            data_method: 'DELETE',
+                            class: 'ajax-link',
+                            data_confirm: t('delete_confirm')
+                        }
+                    %>
+                    <%= erp_datalist_row_actions(
+                        actions
+                    ) %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<% if @reservations.empty? %>
+    <div class="datalist-empty-line"><%= t('.no_matching_records_found') %></div>
+<% end %>
+
+<%= erp_datalist_pagination(@reservations) %>

@@ -1,0 +1,46 @@
+<% content_for :title do %>
+    <%= t('.reservations') %>
+<% end %>
+
+<% content_for :page_title do %>
+    <i class="fa fa-file-text"></i> <%= t('.reservations') %>
+<% end %>
+
+<%= erp_datalist(
+    url: erp_reservations.list_backend_reservations_path,
+    keyword: true,
+    actions: [
+        {
+            text: '<i class="fa fa-trash"></i> '+t('.delete'),
+            url: erp_quick_orders.delete_all_backend_orders_path,
+            data_method: 'DELETE',
+            data_confirm: t('delete_confirm')
+        }
+    ],
+    columns: [
+        {
+            text: t('.id'), name: 'id', value: true, checked: true
+        },
+        {
+            text: t('.name'), name: 'name', value: true, checked: true
+        },
+        {
+            text: t('.email'), name: 'email', value: true, checked: true
+        },
+        {
+            text: t('.phone'), name: 'phone', value: true, checked: true
+        },
+        {
+            text: t('.resdate'), name: 'resdate', value: true, checked: true
+        },
+        {
+            text: t('.restime'), name: 'restime', value: true, checked: true
+        },
+        {
+            text: t('.numperson'), name: 'numperson', value: true, checked: true
+        },
+        {
+            text: t('.note'), name: 'note', value: true, checked: true
+        },
+    ]
+) %>
