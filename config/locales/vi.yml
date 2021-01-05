@@ -10,6 +10,14 @@ vi:
           index:
             reservations: "Đơn đặt bàn"
             delete: "Xóa đặt bàn"
+            name: "Họ tên"
+            phone: "Số điện thoại"
+            email: "Email"
+            resdate: "Ngày đặt bàn"
+            restime: "Giờ đặt bàn"
+            numperson: "Số người"
+            note: "Yêu cầu đặc biệt"
+            delete: "Xóa đặt bàn"
           list:
             name: "Họ tên"
             phone: "Số điện thoại"

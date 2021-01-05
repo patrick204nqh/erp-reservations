@@ -4,6 +4,9 @@
             <th width='1%'>
                 <%= erp_datalist_check_all %>
             </th>
+            <% if get_columns(params).include?("code") %>
+                <th><%= t('.code') %></th>
+            <% end %>
             <% if get_columns(params).include?("name") %>
                 <th><%= t('.name') %></th>
             <% end %>
@@ -36,13 +39,12 @@
     </thead>
     <tbody>
         <% @reservations.each do |reservation| %>
-            <tr class="odd gradeX has-child-table" data-url="<%= erp_quick_orders.order_details_backend_orders_path(id: reservation.id) %>">
+            <tr class="odd gradeX has-child-table">
                 <td>
                     <%= erp_datalist_check_row(id: reservation.id) %>
                 </td>
                 <% if get_columns(params).include?("code") %>
                     <td>
-                        <i class="fa fa-plus expand tr-expand-button"></i>
                         <span class="font-yellow-gold sbold"><%= reservation.code %></span>
                     </td>
                 <% end %>

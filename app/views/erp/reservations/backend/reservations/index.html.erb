@@ -12,23 +12,23 @@
     actions: [
         {
             text: '<i class="fa fa-trash"></i> '+t('.delete'),
-            url: erp_quick_orders.delete_all_backend_orders_path,
+            url: erp_reservations.delete_all_backend_reservations_path,
             data_method: 'DELETE',
             data_confirm: t('delete_confirm')
         }
     ],
     columns: [
         {
-            text: t('.id'), name: 'id', value: true, checked: true
+            text: t('.code'), name: 'code', value: true, checked: false
         },
         {
             text: t('.name'), name: 'name', value: true, checked: true
         },
         {
-            text: t('.email'), name: 'email', value: true, checked: true
+            text: t('.email'), name: 'email', value: true, checked: false
         },
         {
-            text: t('.phone'), name: 'phone', value: true, checked: true
+            text: t('.phone'), name: 'phone', value: true, checked: false
         },
         {
             text: t('.resdate'), name: 'resdate', value: true, checked: true
