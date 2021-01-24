@@ -29,6 +29,11 @@
                     <%= t('.numperson') %>
                 </th>
             <% end %>
+            <% if get_columns(params).include?("created_at") %>
+                <th>
+                    <%= t('.created_at') %>
+                </th>
+            <% end %>
             <% if get_columns(params).include?("note") %>
                 <th>
                     <%= t('.note') %>
@@ -65,6 +70,9 @@
                 <% end %>
                 <% if get_columns(params).include?("numperson") %>
                     <td><%= reservation.numperson %></td>
+                <% end %>
+                <% if get_columns(params).include?("created_at") %>
+                    <td><%= reservation.created_at.strftime("%d/%m/%Y %I:%M%p") %></td>
                 <% end %>
                 <% if get_columns(params).include?("note") %>
                     <td><%= reservation.note %></td>

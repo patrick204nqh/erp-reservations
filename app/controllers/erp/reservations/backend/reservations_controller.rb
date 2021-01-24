@@ -9,7 +9,7 @@ module Erp
         end
 
         def list
-          @reservations = Reservation.all.paginate(:page => params[:page], :per_page => 20)
+          @reservations = Reservation.search(params).paginate(:page => params[:page], :per_page => 20)
 
           render layout: nil
         end
