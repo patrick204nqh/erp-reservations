@@ -20,6 +20,7 @@ vi:
             delete: "Xóa đặt bàn"
             reservations: "Đơn đặt bàn"
             delete: "Xóa đặt bàn"
+            status: "Trạng thái"
           list:
             code: "Mã đặt bàn"
             name: "Họ tên"
@@ -30,3 +31,27 @@ vi:
             created_at: "Ngày tạo"
             note: "Yêu cầu đặc biệt"
             delete: "Xóa đặt bàn"
+            update_status_confirm: "Xác nhận cập nhật trạng thái đặt bàn"
+            status: "Trạng thái"
+            status_pending: "Tiếp nhận đặt bàn"
+            status_confirmed: "Xác nhận đặt bàn"
+            status_done: "Hoàn thành"
+            status_canceled: "Hủy đặt bàn"
+            update_status_confirm: "Xác nhận cập nhật trạng thái đặt bàn"
+            new: "Mới"
+            pending: "Đang chờ"
+            confirmed: "Xác nhận"
+            done: "Hoàn thành"
+            canceled: "Đã hủy"
+          set_status_pending:
+            success: "Cập nhật trạng thái tiếp nhận thành công"
+            error: "Cập nhật trạng thái không thành công"
+          set_status_confirmed:
+            success: "Cập nhật trạng thái đã xác nhận thành công"
+            error: "Cập nhật trạng thái không thành công"
+          set_status_done:
+            success: "Cập nhật trạng thái hoàn thành thành công"
+            error: "Cập nhật trạng thái không thành công"
+          set_status_canceled:
+            success: "Cập nhật trạng thái đã hủy thành công"
+            error: "Cập nhật trạng thái không thành công"

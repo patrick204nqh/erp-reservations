@@ -10,12 +10,12 @@
     url: erp_reservations.list_backend_reservations_path,
     keyword: true,
     actions: [
-        {
-            text: '<i class="fa fa-trash"></i> '+t('.delete'),
-            url: erp_reservations.delete_all_backend_reservations_path,
-            data_method: 'DELETE',
-            data_confirm: t('delete_confirm')
-        }
+        # {
+        #     text: '<i class="fa fa-trash"></i> '+t('.delete'),
+        #     url: erp_reservations.delete_all_backend_reservations_path,
+        #     data_method: 'DELETE',
+        #     data_confirm: t('delete_confirm')
+        # }
     ],
     columns: [
         {
@@ -38,6 +38,9 @@
         },
         {
             text: t('.note'), name: 'note', value: true, checked: true
+        },
+        {
+            text: t('.status'), name: 'status', value: true, checked: true
         },
     ]
 ) %>

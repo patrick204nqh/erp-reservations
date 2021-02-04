@@ -94,5 +94,46 @@ module Erp::Reservations
       ]
     end
 
+
+    STATUS_NEW = 'new'
+    STATUS_PENDING = 'pending'
+    STATUS_CONFIRMED = 'confirmed'
+    STATUS_DONE = 'done'
+    STATUS_CANCELED = 'canceled'
+
+    # set status pending
+    def set_status_pending
+      update(status: Erp::Reservations::Reservation::STATUS_PENDING)
+    end
+    # set status confirmed
+    def set_status_confirmed
+      update(status: Erp::Reservations::Reservation::STATUS_CONFIRMED)
+    end
+    # set status done
+    def set_status_done
+      update(status: Erp::Reservations::Reservation::STATUS_DONE)
+    end
+    # set status canceled
+    def set_status_canceled
+      update(status: Erp::Reservations::Reservation::STATUS_CANCELED)
+    end
+
+    # check if order is pending
+    def is_pending?
+      return self.status == Erp::Reservations::Reservation::STATUS_PENDING
+    end
+    # check if order is confirmed
+    def is_confirmed?
+      return self.status == Erp::Reservations::Reservation::STATUS_CONFIRMED
+    end
+    # check if order is done
+    def is_done?
+      return self.status == Erp::Reservations::Reservation::STATUS_DONE
+    end
+    # check if order is canceled
+    def is_canceled?
+      return self.status == Erp::Reservations::Reservation::STATUS_CANCELED
+    end
+
   end
 end

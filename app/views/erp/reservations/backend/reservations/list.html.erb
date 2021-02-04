@@ -36,6 +36,11 @@
                     <%= t('.note') %>
                 </th>
             <% end %>
+            <% if get_columns(params).include?("status") %>
+                <th>
+                    <%= t('.status') %>
+                </th>
+            <% end %>
             <th width="7%"><%= t('actions') %></th>
         </tr>
     </thead>
@@ -71,19 +76,57 @@
                 <% if get_columns(params).include?("note") %>
                     <td><%= reservation.note %></td>
                 <% end %>
+                <% if get_columns(params).include?("status") %>
+                    <td>
+                        <% if reservation.status == Erp::Reservations::Reservation::STATUS_NEW %>
+                        <span class="label label-warning"><%= t(".#{reservation.status}") %></span>
+                        <% elsif reservation.status == Erp::Reservations::Reservation::STATUS_PENDING %>
+                        <span class="label label-default"><%= t(".#{reservation.status}") %></span>
+                        <% elsif reservation.status == Erp::Reservations::Reservation::STATUS_CONFIRMED %>
+                        <span class="label label-primary"><%= t(".#{reservation.status}") %></span>
+                        <% elsif reservation.status == Erp::Reservations::Reservation::STATUS_DONE %>
+                        <span class="label label-success"><%= t(".#{reservation.status}") %></span>
+                        <% elsif reservation.status == Erp::Reservations::Reservation::STATUS_CANCELED %>
+                        <span class="label label-danger"><%= t(".#{reservation.status}") %></span>
+                        <% end %>
+                    </td>
+                <% end %>
                 <td>
-                    <%
-                        actions = []
-                        actions << {
-                            text: '<i class="fa fa-trash"></i> '+t('.delete'),
-                            url: erp_reservations.backend_reservation_path(reservation),
-                            data_method: 'DELETE',
-                            class: 'ajax-link',
-                            data_confirm: t('delete_confirm')
-                        }
-                    %>
                     <%= erp_datalist_row_actions(
-                        actions
+                        [
+                            {
+                                text: '<i class="fa fa-ellipsis-h"></i> '+t('.status_pending'),
+                                url: erp_reservations.set_status_pending_backend_reservations_path(id: reservation),
+                                data_method: 'PUT',
+                                class: 'ajax-link',
+                                data_confirm: t('.update_status_confirm'),
+                                hide: reservation.is_pending?
+                            },
+                            {
+                                text: '<i class="fa fa-check"></i> '+t('.status_confirmed'),
+                                url: erp_reservations.set_status_confirmed_backend_reservations_path(id: reservation),
+                                data_method: 'PUT',
+                                class: 'ajax-link',
+                                data_confirm: t('.update_status_confirm'),
+                                hide: reservation.is_confirmed?
+                            },
+                            {
+                                text: '<i class="fa fa-check-square-o"></i> '+t('.status_done'),
+                                url: erp_reservations.set_status_done_backend_reservations_path(id: reservation),
+                                data_method: 'PUT',
+                                class: 'ajax-link',
+                                data_confirm: t('.update_status_confirm'),
+                                hide: reservation.is_done?
+                            },
+                            {
+                                text: '<i class="fa fa-ban"></i> '+t('.status_canceled'),
+                                url: erp_reservations.set_status_canceled_backend_reservations_path(id: reservation),
+                                data_method: 'PUT',
+                                class: 'ajax-link',
+                                data_confirm: t('.update_status_confirm'),
+                                hide: reservation.is_canceled?
+                            }
+                        ]
                     ) %>
                 </td>
             </tr>

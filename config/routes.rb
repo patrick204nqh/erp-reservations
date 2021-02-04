@@ -5,7 +5,11 @@ Erp::Reservations::Engine.routes.draw do
         collection do
           post 'list'
           get 'reservation_details'
-					delete 'delete_all'
+          # delete 'delete_all'
+          put 'set_status_pending'
+          put 'set_status_confirmed'
+          put 'set_status_done'
+          put 'set_status_canceled'
         end
       end
     end
