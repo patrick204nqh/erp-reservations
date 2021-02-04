@@ -16,11 +16,8 @@
             <% if get_columns(params).include?("email") %>
                 <th><%= t('.email') %></th>
             <% end %>
-            <% if get_columns(params).include?("resdate") %>
-                <th width='15%'><%= t('.resdate') %></th>
-            <% end %>
             <% if get_columns(params).include?("restime") %>
-                <th class="sortable" sort-by='erp_reservations_reservations.restime'>
+                <th class="sortable" sort-by='erp_reservations_reservations.restime' width='15%'>
                     <%= t('.restime') %>
                 </th>
             <% end %>
@@ -62,11 +59,8 @@
                 <% if get_columns(params).include?("email") %>
                     <td><%= reservation.email %></td>
                 <% end %>
-                <% if get_columns(params).include?("resdate") %>
-                    <td><%= reservation.resdate %></td>
-                <% end %>
                 <% if get_columns(params).include?("restime") %>
-                    <td><%= reservation.restime %></td>
+                    <td><%= reservation.resdate %> (<%= reservation.restime %>)</td>
                 <% end %>
                 <% if get_columns(params).include?("numperson") %>
                     <td><%= reservation.numperson %></td>
